@@ -41,12 +41,13 @@ describe('Park', function() {
   });
 
   it('should be able to remove a dinosaur from its collection', function(){
-    park.addDinosaur("T-rex")
-    park.addDinosaur("Veloceraptor")
-    park.addDinosaur("Dilyphosaurus")
+    const dinosaur = new Dinosaur('t-rex', 'carnivore', 50)
+    const dinosaur2 = new Dinosaur('Dilyphosaurus', 'veggie', 100)
+    park.addDinosaur(dinosaur)
+    park.addDinosaur(dinosaur2)
     park.removeDinosaurByName("Dilyphosaurus")
     const actual = park.numberOfDinosaurs()
-    assert.strictEqual(actual, 2)
+    assert.strictEqual(actual, 1)
   });
 
   it('should be able to find the dinosaur that attracts the most visitors', function(){
@@ -58,12 +59,42 @@ describe('Park', function() {
     assert.strictEqual(actual, dinosaur2)
   });
 
-  it('should be able to find all dinosaurs of a particular species');
+  it('should be able to find all dinosaurs of a particular species', function(){
+    const dinosaur = new Dinosaur('t-rex', 'carnivore', 50)
+    const dinosaur2 = new Dinosaur('Dilyphosaurus', 'veggie', 100)
+    park.addDinosaur(dinosaur)
+    park.addDinosaur(dinosaur2)
+    const actual = park.getAllDinosaurOfParticularSpecies("t-rex")
+    console.log(actual)
+    assert.deepStrictEqual (actual, [dinosaur])
 
-  it('should be able to calculate the total number of visitors per day');
+  });
 
-  it('should be able to calculate the total number of visitors per year');
+  it('should be able to calculate the total number of visitors per day', function(){
+    const dinosaur = new Dinosaur('t-rex', 'carnivore', 50)
+    const dinosaur2 = new Dinosaur('Dilyphosaurus', 'veggie', 100)
+    park.addDinosaur(dinosaur)
+    park.addDinosaur(dinosaur2)
+    const actual = park.getTotalGuestsAttractedPerDay()
+    assert.strictEqual(actual, 150)
+  });
 
-  it('should be able to calculate total revenue for one year');
+  it('should be able to calculate the total number of visitors per year', function(){
+    const dinosaur = new Dinosaur('t-rex', 'carnivore', 50)
+    const dinosaur2 = new Dinosaur('Dilyphosaurus', 'veggie', 100)
+    park.addDinosaur(dinosaur)
+    park.addDinosaur(dinosaur2)
+    const actual = park.getTotalGuestsAttractedPerYear()
+    assert.strictEqual(actual, 54750)
+  });
+
+  it('should be able to calculate total revenue for one year', function() {
+    const dinosaur = new Dinosaur('t-rex', 'carnivore', 50)
+    const dinosaur2 = new Dinosaur('Dilyphosaurus', 'veggie', 100)
+    park.addDinosaur(dinosaur)
+    park.addDinosaur(dinosaur2)
+    const actual = park.getTotalRevenuePerYear()
+    assert.strictEqual(actual, 1095000)
+  });
 
 });
